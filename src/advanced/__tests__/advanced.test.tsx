@@ -269,6 +269,7 @@ describe('advanced > ', () => {
     });
   });
 
+  // useLocalStorageState > //
   describe('useLocalStorage >', () => {
     test('localStorage에 값이 없으면 initialProducts로 초기화하고 저장한다', () => {
       const { result } = renderHook(() => useProducts(mockProducts));
