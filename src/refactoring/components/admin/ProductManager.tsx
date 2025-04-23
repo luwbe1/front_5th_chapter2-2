@@ -190,7 +190,6 @@ export const ProductManager = ({
                 {editingProduct && editingProduct.id === product.id ? (
                   <div>
                     <div className="mb-4">
-                      {/* <label className="block mb-1">상품명: </label> */}
                       <Input
                         label="상품명: "
                         id="productName"
