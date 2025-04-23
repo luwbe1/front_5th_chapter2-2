@@ -1,5 +1,6 @@
 import { Coupon, CartItem } from '../../../types.ts';
 import { SectionTitle } from '../layout/SectionTitle.tsx';
+import { CardBox } from '../layout/CardBox.tsx';
 
 interface Props {
   coupons: Coupon[];
@@ -90,7 +91,7 @@ export const CartList = ({
         })}
       </div>
 
-      <div className="mt-6 bg-white p-4 rounded shadow">
+      <CardBox>
         <h2 className="text-2xl font-semibold mb-2">쿠폰 적용</h2>
         <select
           onChange={e => applyCoupon(coupons[parseInt(e.target.value)])}
@@ -115,9 +116,9 @@ export const CartList = ({
             할인)
           </p>
         )}
-      </div>
+      </CardBox>
 
-      <div className="mt-6 bg-white p-4 rounded shadow">
+      <CardBox>
         <h2 className="text-2xl font-semibold mb-2">주문 요약</h2>
         <div className="space-y-1">
           <p>상품 금액: {totalBeforeDiscount.toLocaleString()}원</p>
@@ -128,7 +129,7 @@ export const CartList = ({
             최종 결제 금액: {totalAfterDiscount.toLocaleString()}원
           </p>
         </div>
-      </div>
+      </CardBox>
     </div>
   );
 };

@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Discount, Product } from '../../../types.ts';
 import { SectionTitle } from '../layout/SectionTitle.tsx';
+import { CardBox } from '../layout/CardBox.tsx';
+import { Input } from '../shared/Input.tsx';
 
 interface Props {
   products: Product[];
@@ -124,33 +126,22 @@ export const ProductManager = ({
         {showNewProductForm ? '취소' : '새 상품 추가'}
       </button>
       {showNewProductForm && (
-        <div className="bg-white p-4 rounded shadow mb-4">
+        <CardBox>
           <h3 className="text-xl font-semibold mb-2">새 상품 추가</h3>
           <div className="mb-2">
-            <label
-              htmlFor="productName"
-              className="block text-sm font-medium text-gray-700"
-            >
-              상품명
-            </label>
-            <input
+            <Input
+              label="상품명"
               id="productName"
               type="text"
               value={newProduct.name}
               onChange={e =>
                 setNewProduct({ ...newProduct, name: e.target.value })
               }
-              className="w-full p-2 border rounded"
             />
           </div>
           <div className="mb-2">
-            <label
-              htmlFor="productPrice"
-              className="block text-sm font-medium text-gray-700"
-            >
-              가격
-            </label>
-            <input
+            <Input
+              label="가격"
               id="productPrice"
               type="number"
               value={newProduct.price}
@@ -160,17 +151,11 @@ export const ProductManager = ({
                   price: parseInt(e.target.value),
                 })
               }
-              className="w-full p-2 border rounded"
             />
           </div>
           <div className="mb-2">
-            <label
-              htmlFor="productStock"
-              className="block text-sm font-medium text-gray-700"
-            >
-              재고
-            </label>
-            <input
+            <Input
+              label="재고"
               id="productStock"
               type="number"
               value={newProduct.stock}
@@ -180,7 +165,6 @@ export const ProductManager = ({
                   stock: parseInt(e.target.value),
                 })
               }
-              className="w-full p-2 border rounded"
             />
           </div>
           <button
@@ -189,15 +173,11 @@ export const ProductManager = ({
           >
             추가
           </button>
-        </div>
+        </CardBox>
       )}
       <div className="space-y-2">
         {products.map((product, index) => (
-          <div
-            key={product.id}
-            data-testid={`product-${index + 1}`}
-            className="bg-white p-4 rounded shadow"
-          >
+          <CardBox key={product.id} data-testid={`product-${index + 1}`}>
             <button
               data-testid="toggle-button"
               onClick={() => toggleProductAccordion(product.id)}
@@ -210,19 +190,22 @@ export const ProductManager = ({
                 {editingProduct && editingProduct.id === product.id ? (
                   <div>
                     <div className="mb-4">
-                      <label className="block mb-1">상품명: </label>
-                      <input
+                      {/* <label className="block mb-1">상품명: </label> */}
+                      <Input
+                        label="상품명: "
+                        id="productName"
                         type="text"
                         value={editingProduct.name}
                         onChange={e =>
                           handleProductNameUpdate(product.id, e.target.value)
                         }
-                        className="w-full p-2 border rounded"
+                        labelClassName="block mb-1"
                       />
                     </div>
                     <div className="mb-4">
-                      <label className="block mb-1">가격: </label>
-                      <input
+                      <Input
+                        label="가격: "
+                        id="productPrice"
                         type="number"
                         value={editingProduct.price}
                         onChange={e =>
@@ -231,12 +214,13 @@ export const ProductManager = ({
                             parseInt(e.target.value)
                           )
                         }
-                        className="w-full p-2 border rounded"
+                        labelClassName="block mb-1"
                       />
                     </div>
                     <div className="mb-4">
-                      <label className="block mb-1">재고: </label>
-                      <input
+                      <Input
+                        label="재고: "
+                        id="productStock"
                         type="number"
                         value={editingProduct.stock}
                         onChange={e =>
@@ -245,7 +229,7 @@ export const ProductManager = ({
                             parseInt(e.target.value)
                           )
                         }
-                        className="w-full p-2 border rounded"
+                        labelClassName="block mb-1"
                       />
                     </div>
                     {/* 할인 정보 수정 부분 */}
@@ -271,7 +255,8 @@ export const ProductManager = ({
                         </div>
                       ))}
                       <div className="flex space-x-2">
-                        <input
+                        <Input
+                          id="discountQuantity"
                           type="number"
                           placeholder="수량"
                           value={newDiscount.quantity}
@@ -281,9 +266,10 @@ export const ProductManager = ({
                               quantity: parseInt(e.target.value),
                             })
                           }
-                          className="w-1/3 p-2 border rounded"
+                          inputClassName="w-1/3 p-2 border rounded"
                         />
-                        <input
+                        <Input
+                          id="discountRate"
                           type="number"
                           placeholder="할인율 (%)"
                           value={newDiscount.rate * 100}
@@ -293,7 +279,7 @@ export const ProductManager = ({
                               rate: parseInt(e.target.value) / 100,
                             })
                           }
-                          className="w-1/3 p-2 border rounded"
+                          inputClassName="w-1/3 p-2 border rounded"
                         />
                         <button
                           onClick={() => handleAddDiscount(product.id)}
@@ -331,7 +317,7 @@ export const ProductManager = ({
                 )}
               </div>
             )}
-          </div>
+          </CardBox>
         ))}
       </div>
     </div>

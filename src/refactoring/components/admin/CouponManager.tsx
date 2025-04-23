@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Coupon } from '../../../types.ts';
 import { SectionTitle } from '../layout/SectionTitle.tsx';
+import { CardBox } from '../layout/CardBox.tsx';
+import { Input } from '../shared/Input.tsx';
 
 interface Props {
   coupons: Coupon[];
@@ -27,21 +29,21 @@ export const CouponManager = ({ coupons, onCouponAdd }: Props) => {
   return (
     <div>
       <SectionTitle sectionTitle={'쿠폰 관리'} />
-      <div className="bg-white p-4 rounded shadow">
+      <CardBox>
         <div className="space-y-2 mb-4">
-          <input
+          <Input
+            id="coupon-name"
             type="text"
             placeholder="쿠폰 이름"
             value={newCoupon.name}
             onChange={e => setNewCoupon({ ...newCoupon, name: e.target.value })}
-            className="w-full p-2 border rounded"
           />
-          <input
+          <Input
+            id="coupon-code"
             type="text"
             placeholder="쿠폰 코드"
             value={newCoupon.code}
             onChange={e => setNewCoupon({ ...newCoupon, code: e.target.value })}
-            className="w-full p-2 border rounded"
           />
           <div className="flex gap-2">
             <select
@@ -57,7 +59,8 @@ export const CouponManager = ({ coupons, onCouponAdd }: Props) => {
               <option value="amount">금액(원)</option>
               <option value="percentage">할인율(%)</option>
             </select>
-            <input
+            <Input
+              id="discount-value"
               type="number"
               placeholder="할인 값"
               value={newCoupon.discountValue}
@@ -67,7 +70,6 @@ export const CouponManager = ({ coupons, onCouponAdd }: Props) => {
                   discountValue: parseInt(e.target.value),
                 })
               }
-              className="w-full p-2 border rounded"
             />
           </div>
           <button
@@ -95,7 +97,7 @@ export const CouponManager = ({ coupons, onCouponAdd }: Props) => {
             ))}
           </div>
         </div>
-      </div>
+      </CardBox>
     </div>
   );
 };
