@@ -1,6 +1,7 @@
 import { Coupon, CartItem } from '../../../types.ts';
 import { SectionTitle } from '../layout/SectionTitle.tsx';
 import { CardBox } from '../layout/CardBox.tsx';
+import { getAppliedDiscount } from '../../utils/discount.ts';
 
 interface Props {
   coupons: Coupon[];
@@ -27,17 +28,6 @@ export const CartList = ({
 }: Props) => {
   const { totalBeforeDiscount, totalAfterDiscount, totalDiscount } =
     calculateTotal();
-  const getAppliedDiscount = (item: CartItem) => {
-    const { discounts } = item.product;
-    const { quantity } = item;
-    let appliedDiscount = 0;
-    for (const discount of discounts) {
-      if (quantity >= discount.quantity) {
-        appliedDiscount = Math.max(appliedDiscount, discount.rate);
-      }
-    }
-    return appliedDiscount;
-  };
 
   return (
     <div>

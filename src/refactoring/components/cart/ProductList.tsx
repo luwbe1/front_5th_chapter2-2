@@ -1,5 +1,6 @@
 import { Product, CartItem } from '../../../types.ts';
 import { SectionTitle } from '../layout/SectionTitle.tsx';
+import { getRemainingStock, getMaxDiscount } from '../../utils/product.ts';
 
 interface Props {
   products: Product[];
@@ -8,21 +9,12 @@ interface Props {
 }
 
 export const ProductList = ({ products, cart, addToCart }: Props) => {
-  const getRemainingStock = (product: Product) => {
-    const cartItem = cart.find(item => item.product.id === product.id);
-    return product.stock - (cartItem?.quantity || 0);
-  };
-
-  const getMaxDiscount = (discounts: { quantity: number; rate: number }[]) => {
-    return discounts.reduce((max, discount) => Math.max(max, discount.rate), 0);
-  };
-
   return (
     <div>
       <SectionTitle sectionTitle={'상품 목록'} />
       <div className="space-y-2">
         {products.map(product => {
-          const remainingStock = getRemainingStock(product);
+          const remainingStock = getRemainingStock(product, cart);
           return (
             <div
               key={product.id}
