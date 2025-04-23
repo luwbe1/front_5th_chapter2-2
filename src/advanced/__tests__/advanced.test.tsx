@@ -1,9 +1,17 @@
 import { useState } from 'react';
 import { describe, expect, test } from 'vitest';
-import { act, fireEvent, render, screen, within } from '@testing-library/react';
-import { CartPage } from '../../refactoring/components/CartPage';
-import { AdminPage } from '../../refactoring/components/AdminPage';
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  within,
+  renderHook,
+} from '@testing-library/react';
+import { CartPage } from '../../refactoring/pages/CartPage';
+import { AdminPage } from '../../refactoring/pages/AdminPage';
 import { Coupon, Product } from '../../types';
+import { useLocalStorageState, useCoupons, useProducts } from '../hooks';
 
 const mockProducts: Product[] = [
   {
@@ -261,13 +269,51 @@ describe('advanced > ', () => {
     });
   });
 
-  describe('자유롭게 작성해보세요.', () => {
-    test('새로운 유틸 함수를 만든 후에 테스트 코드를 작성해서 실행해보세요', () => {
-      expect(true).toBe(false);
+  describe('useLocalStorage >', () => {
+    test('localStorage에 값이 없으면 initialProducts로 초기화하고 저장한다', () => {
+      const { result } = renderHook(() => useProducts(mockProducts));
+
+      expect(result.current.products).toEqual(mockProducts);
+
+      expect(JSON.parse(localStorage.getItem('products') || '[]')).toEqual(
+        mockProducts
+      );
     });
 
-    test('새로운 hook 함수르 만든 후에 테스트 코드를 작성해서 실행해보세요', () => {
-      expect(true).toBe(false);
+    test('상품을 추가하면 localStorage에 저장된다', () => {
+      const { result } = renderHook(() => useProducts(mockProducts));
+
+      const newProduct: Product = {
+        id: 'p4',
+        name: '상품4',
+        price: 15000,
+        stock: 30,
+        discounts: [],
+      };
+
+      act(() => {
+        result.current.addProduct(newProduct);
+      });
+
+      expect(result.current.products).toContainEqual(newProduct);
+
+      const stored = JSON.parse(localStorage.getItem('products') || '[]');
+      expect(stored).toContainEqual(newProduct);
+    });
+
+    test('상품을 업데이트하면 localStorage에 저장된다', () => {
+      const { result } = renderHook(() => useProducts(mockProducts));
+
+      const updatedProduct = { ...mockProducts[0], name: 'Updated Product' };
+
+      act(() => {
+        result.current.updateProduct(updatedProduct);
+      });
+
+      expect(result.current.products).toContainEqual(updatedProduct);
+
+      const stored = JSON.parse(localStorage.getItem('products') || '[]');
+      expect(stored).toContainEqual(updatedProduct);
     });
   });
 });
