@@ -81,7 +81,7 @@ export const CartList = ({
         })}
       </div>
 
-      <CardBox>
+      <CardBox className="mt-4">
         <h2 className="text-2xl font-semibold mb-2">쿠폰 적용</h2>
         <select
           onChange={e => applyCoupon(coupons[parseInt(e.target.value)])}
@@ -108,7 +108,7 @@ export const CartList = ({
         )}
       </CardBox>
 
-      <CardBox>
+      <CardBox className="mt-4">
         <h2 className="text-2xl font-semibold mb-2">주문 요약</h2>
         <div className="space-y-1">
           <p>상품 금액: {totalBeforeDiscount.toLocaleString()}원</p>
