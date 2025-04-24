@@ -1,4 +1,4 @@
-import { Coupon, CartItem } from '../../../types.ts';
+import { Coupon, CartItem } from '../../types';
 import { SectionTitle } from '../layout/SectionTitle.tsx';
 import { CouponSelectBox } from './CouponSelectBox.tsx';
 import { CartItemRow } from './CartItemRow.tsx';

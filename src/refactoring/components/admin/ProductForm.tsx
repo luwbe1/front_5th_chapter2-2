@@ -1,6 +1,6 @@
 import { CardBox } from '../layout/CardBox';
 import { Input } from '../shared/Input';
-import { Product } from '../../../types';
+import { Product } from '../../types';
 
 interface Props {
   product: Omit<Product, 'id'>;

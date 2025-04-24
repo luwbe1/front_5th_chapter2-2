@@ -1,4 +1,4 @@
-import { Coupon } from '../../types.ts';
+import { Coupon } from '../../refactoring/types';
 import { useLocalStorageState } from './useLocalStorage.ts';
 
 export const useCoupons = (initialCoupons: Coupon[]) => {

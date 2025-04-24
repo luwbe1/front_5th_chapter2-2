@@ -1,5 +1,5 @@
 import { CardBox } from '../layout/CardBox.tsx';
-import { Coupon } from '../../../types.ts';
+import { Coupon } from '../../types';
 
 interface Props {
   coupons: Coupon[];

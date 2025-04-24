@@ -1,4 +1,4 @@
-import { Coupon, Product } from '../../types.ts';
+import { Coupon, Product } from '../types';
 import { ProductManager } from '../components/admin/ProductManager.tsx';
 import { CouponManager } from '../components/admin/CouponManager.tsx';
 import { MainLayout } from '../components/layout/MainLayout.tsx';

@@ -10,8 +10,8 @@ import {
 } from '@testing-library/react';
 import { CartPage } from '../../refactoring/pages/CartPage';
 import { AdminPage } from '../../refactoring/pages/AdminPage';
-import { Coupon, Product } from '../../types';
-import { useLocalStorageState, useCoupons, useProducts } from '../hooks';
+import { Coupon, Product } from '../../refactoring/types';
+import { useProducts } from '../hooks';
 
 const mockProducts: Product[] = [
   {

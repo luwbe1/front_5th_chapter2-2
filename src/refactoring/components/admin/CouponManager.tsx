@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Coupon } from '../../../types.ts';
+import { Coupon } from '../../types';
 import { SectionTitle } from '../layout/SectionTitle.tsx';
 import { CardBox } from '../layout/CardBox.tsx';
 import { CouponForm } from './CouponForm.tsx';

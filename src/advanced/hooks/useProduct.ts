@@ -1,4 +1,4 @@
-import { Product } from '../../types.ts';
+import { Product } from '../../refactoring/types';
 import { useLocalStorageState } from './useLocalStorage.ts';
 
 export const useProducts = (initialProducts: Product[]) => {

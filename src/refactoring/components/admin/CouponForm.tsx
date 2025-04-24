@@ -1,4 +1,4 @@
-import { Coupon } from '../../../types';
+import { Coupon } from '../../types';
 import { Input } from '../shared/Input';
 
 interface Props {

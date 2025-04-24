@@ -1,4 +1,4 @@
-import { CartItem, Product } from '../../types';
+import { CartItem, Product } from '../types';
 
 // 제품 재고에서 장바구니 수량을 뺀 남은 재고를 계산하는 함수
 export const getRemainingStock = (product: Product, cart: CartItem[]) => {

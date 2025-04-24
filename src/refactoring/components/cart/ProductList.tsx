@@ -1,4 +1,4 @@
-import { Product, CartItem } from '../../../types.ts';
+import { Product, CartItem } from '../../types';
 import { SectionTitle } from '../layout/SectionTitle.tsx';
 import { getRemainingStock, getMaxDiscount } from '../../utils/product.ts';
 

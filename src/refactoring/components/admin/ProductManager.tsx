@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Discount, Product } from '../../../types.ts';
+import { Discount, Product } from '../../types';
 import { SectionTitle } from '../layout/SectionTitle.tsx';
 import { CardBox } from '../layout/CardBox.tsx';
 import { Input } from '../shared/Input.tsx';
