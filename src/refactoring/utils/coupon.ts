@@ -1,6 +1,8 @@
 import { formatCurrency } from './format';
+import { DiscountType, DISCOUNT_TYPE } from '../types';
 
 export const formatDiscountValue = (
-  type: 'amount' | 'percentage',
+  type: DiscountType,
   value: number
-): string => (type === 'amount' ? `${formatCurrency(value)}원` : `${value}%`);
+): string =>
+  type === DISCOUNT_TYPE.AMOUNT ? `${formatCurrency(value)}원` : `${value}%`;

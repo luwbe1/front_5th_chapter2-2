@@ -1,4 +1,4 @@
-import { CartItem, Coupon } from '../types';
+import { CartItem, Coupon, DISCOUNT_TYPE } from '../types';
 
 export const calculateItemTotal = (item: CartItem) => {
   const { quantity, product } = item;
@@ -33,7 +33,7 @@ export const calculateCartTotal = (
   }, 0);
 
   if (selectedCoupon) {
-    if (selectedCoupon.discountType === 'amount') {
+    if (selectedCoupon.discountType === DISCOUNT_TYPE.AMOUNT) {
       totalDiscount += selectedCoupon.discountValue;
     } else {
       totalDiscount +=

@@ -1,4 +1,4 @@
-import { Coupon } from '../../types';
+import { Coupon, DiscountType } from '../../types';
 import { Input } from '../shared/Input';
 
 interface Props {
@@ -30,7 +30,7 @@ export const CouponForm = ({ newCoupon, setNewCoupon, onSubmit }: Props) => {
           onChange={e =>
             setNewCoupon({
               ...newCoupon,
-              discountType: e.target.value as 'amount' | 'percentage',
+              discountType: e.target.value as DiscountType,
             })
           }
           className="w-full p-2 border rounded"
