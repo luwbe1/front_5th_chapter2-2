@@ -58,17 +58,15 @@ export const updateCartItemQuantity = (
     return cart.filter(item => item.product.id !== productId);
   }
 
-  const updatedCart = cart.map(item => {
-    if (item.product.id === productId) {
-      const quantity =
-        item.product.stock >= newQuantity ? newQuantity : item.product.stock;
-      return {
-        ...item,
-        quantity,
-      };
-    }
-    return item;
-  });
+  return cart.map(item => {
+    if (item.product.id !== productId) return item;
 
-  return updatedCart;
+    // 변경이 없는 경우 (렌더링 최적화)
+    if (item.quantity === newQuantity) return item;
+
+    return {
+      ...item,
+      quantity: Math.min(newQuantity, item.product.stock),
+    };
+  });
 };
