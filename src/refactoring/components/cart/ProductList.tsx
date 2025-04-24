@@ -18,6 +18,7 @@ export const ProductList = ({ products, cart, addToCart }: Props) => {
           const remainingStock = getRemainingStock(product, cart);
           return (
             <ProductCard
+              key={product.id}
               product={product}
               remainingStock={remainingStock}
               onAddToCart={addToCart}
