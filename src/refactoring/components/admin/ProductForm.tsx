@@ -10,7 +10,7 @@ interface Props {
 
 export const ProductForm = ({ product, setProduct, onSubmit }: Props) => {
   return (
-    <CardBox>
+    <CardBox className="mb-4">
       <h3 className="text-xl font-semibold mb-2">새 상품 추가</h3>
       <div className="mb-2">
         <Input
