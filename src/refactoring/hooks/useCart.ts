@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { CartItem, Coupon, Product } from '../types';
 import { calculateCartTotal, updateCartItemQuantity } from '../models/cart';
+import { getRemainingStock } from '../utils/product';
 
 export const useCart = () => {
   const [cart, setCart] = useState<CartItem[]>([]);
@@ -9,7 +10,7 @@ export const useCart = () => {
 
   // cart에 제품을 추가하는 함수
   const addToCart = (product: Product) => {
-    const remainingStock = getRemainingStock(product);
+    const remainingStock = getRemainingStock(product, cart);
     if (remainingStock <= 0) return;
 
     setCart(prevCart => {
@@ -46,11 +47,6 @@ export const useCart = () => {
 
   // 장바구니의 총합을 계산하는 함수
   const calculateTotal = () => calculateCartTotal(cart, selectedCoupon);
-
-  const getRemainingStock = (product: Product) => {
-    const cartItem = cart.find(item => item.product.id === product.id);
-    return product.stock - (cartItem?.quantity || 0);
-  };
 
   return {
     cart,
