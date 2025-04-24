@@ -3,6 +3,7 @@ import { Discount, Product } from '../../../types.ts';
 import { SectionTitle } from '../layout/SectionTitle.tsx';
 import { CardBox } from '../layout/CardBox.tsx';
 import { Input } from '../shared/Input.tsx';
+import { ProductForm } from './ProductForm.tsx';
 
 interface Props {
   products: Product[];
@@ -126,54 +127,11 @@ export const ProductManager = ({
         {showNewProductForm ? '취소' : '새 상품 추가'}
       </button>
       {showNewProductForm && (
-        <CardBox>
-          <h3 className="text-xl font-semibold mb-2">새 상품 추가</h3>
-          <div className="mb-2">
-            <Input
-              label="상품명"
-              id="productName"
-              type="text"
-              value={newProduct.name}
-              onChange={e =>
-                setNewProduct({ ...newProduct, name: e.target.value })
-              }
-            />
-          </div>
-          <div className="mb-2">
-            <Input
-              label="가격"
-              id="productPrice"
-              type="number"
-              value={newProduct.price}
-              onChange={e =>
-                setNewProduct({
-                  ...newProduct,
-                  price: parseInt(e.target.value),
-                })
-              }
-            />
-          </div>
-          <div className="mb-2">
-            <Input
-              label="재고"
-              id="productStock"
-              type="number"
-              value={newProduct.stock}
-              onChange={e =>
-                setNewProduct({
-                  ...newProduct,
-                  stock: parseInt(e.target.value),
-                })
-              }
-            />
-          </div>
-          <button
-            onClick={handleAddNewProduct}
-            className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
-          >
-            추가
-          </button>
-        </CardBox>
+        <ProductForm
+          product={newProduct}
+          setProduct={setNewProduct}
+          onSubmit={handleAddNewProduct}
+        ></ProductForm>
       )}
       <div className="space-y-2">
         {products.map((product, index) => (
