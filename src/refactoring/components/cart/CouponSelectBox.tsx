@@ -1,5 +1,6 @@
 import { CardBox } from '../layout/CardBox.tsx';
 import { Coupon } from '../../types';
+import { formatDiscountValue } from '../../utils/coupon.ts';
 
 interface Props {
   coupons: Coupon[];
@@ -23,18 +24,20 @@ export const CouponSelectBox = ({
         {coupons.map((coupon, index) => (
           <option key={coupon.code} value={index}>
             {coupon.name} -{' '}
-            {coupon.discountType === 'amount'
-              ? `${coupon.discountValue}원`
-              : `${coupon.discountValue}%`}
+            {formatDiscountValue(
+              coupon.discountType,
+              coupon.discountValue
+            )}{' '}
           </option>
         ))}
       </select>
       {selectedCoupon && (
         <p className="text-green-600">
           적용된 쿠폰: {selectedCoupon.name}(
-          {selectedCoupon.discountType === 'amount'
-            ? `${selectedCoupon.discountValue}원`
-            : `${selectedCoupon.discountValue}%`}{' '}
+          {formatDiscountValue(
+            selectedCoupon.discountType,
+            selectedCoupon.discountValue
+          )}{' '}
           할인)
         </p>
       )}
