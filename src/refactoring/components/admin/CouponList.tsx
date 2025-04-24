@@ -1,5 +1,5 @@
 import { Coupon } from '../../types';
-import { formatDiscountValue } from '../../utils/coupon';
+import { CouponCard } from './CouponCard';
 
 interface Props {
   coupons: Coupon[];
@@ -13,14 +13,7 @@ export const CouponList = ({ coupons }: Props) => {
   return (
     <div className="space-y-2">
       {coupons.map((coupon, index) => (
-        <div
-          key={index}
-          data-testid={`coupon-${index + 1}`}
-          className="bg-gray-100 p-2 rounded"
-        >
-          {coupon.name} ({coupon.code}):
-          {formatDiscountValue(coupon.discountType, coupon.discountValue)} 할인
-        </div>
+        <CouponCard key={index} coupon={coupon} index={index} />
       ))}
     </div>
   );
